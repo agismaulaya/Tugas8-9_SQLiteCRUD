@@ -2,11 +2,13 @@ import 'package:crud_apps/model/User.dart';
 import 'package:crud_apps/screens/EditUser.dart';
 import 'package:crud_apps/screens/AddUser.dart';
 import 'package:crud_apps/screens/ViewUsers.dart';
+import 'package:crud_apps/screens/DetailKontak.dart';
 import 'package:crud_apps/services/UserService.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+// import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
+  // databaseFactory = databaseFactoryFfi;
   runApp(const MyApp());
 }
 
@@ -44,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
         userModel.name = user['name'];
         userModel.contact = user['contact'];
         userModel.description = user['description'];
+        userModel.address = user['address'];
         _userList.add(userModel);
       });
     });
@@ -106,57 +109,77 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text("SQLite CRUD"),
       ),
       body: ListView.builder(
-          itemCount: _userList.length,
-          itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ViewUser(
-                                user: _userList[index],
-                              )));
-                },
-                leading: const Icon(Icons.person),
-                title: Text(_userList[index].name ?? ''),
-                subtitle: Text(_userList[index].contact ?? ''),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => EditUser(
-                                        user: _userList[index],
-                                      ))).then((data) {
-                            if (data != null) {
-                              getAllUserDetails();
-                              _showSuccessSnackBar(
-                                  'User Detail Updated Success');
-                            }
-                          });
-                          ;
-                        },
-                        icon: const Icon(
-                          Icons.edit,
-                          color: Colors.teal,
-                        )),
-                    IconButton(
-                        onPressed: () {
-                          _deleteFormDialog(context, _userList[index].id);
-                        },
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ))
-                  ],
-                ),
+        itemCount: _userList.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ViewUser(
+                      user: _userList[index],
+                    ),
+                  ),
+                );
+              },
+              leading: const Icon(Icons.person),
+              title: Text(_userList[index].name ?? ''),
+              subtitle: Text(_userList[index].contact ?? ''),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailKontak(
+                              user: _userList[index],
+                            ),
+                          ));
+                    },
+                    icon: const Icon(
+                      Icons.person_outline,
+                      color: Colors.blue,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditUser(
+                            user: _userList[index],
+                          ),
+                        ),
+                      ).then((data) {
+                        if (data != null) {
+                          getAllUserDetails();
+                          _showSuccessSnackBar('User Detail Updated Success');
+                        }
+                      });
+                    },
+                    icon: const Icon(
+                      Icons.edit,
+                      color: Colors.teal,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      _deleteFormDialog(context, _userList[index].id);
+                    },
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,
