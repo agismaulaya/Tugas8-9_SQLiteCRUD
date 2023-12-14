@@ -1,1 +1,6 @@
-
+![SQLite](https://github.com/agismaulaya/Tugas8-9_SQLiteCRUD/assets/134728148/91c0caf0-77b4-4641-97f1-b35479c4e8e3)
+![SQLite1](https://github.com/agismaulaya/Tugas8-9_SQLiteCRUD/assets/134728148/076aa77b-9d2e-4878-92af-03f884be5841)
+![SQLite2](https://github.com/agismaulaya/Tugas8-9_SQLiteCRUD/assets/134728148/b2516c22-1b66-45e5-830f-6dc347cdf061)
+![SQLite3](https://github.com/agismaulaya/Tugas8-9_SQLiteCRUD/assets/134728148/50590d30-91eb-4d59-8e14-1bed1b168dbd)
+![SQLite4](https://github.com/agismaulaya/Tugas8-9_SQLiteCRUD/assets/134728148/a867e3b5-7330-48ab-967c-6fb3bb502863)
+![SQLite5](https://github.com/agismaulaya/Tugas8-9_SQLiteCRUD/assets/134728148/98ef4aaa-4af4-4662-84f1-008fed59da00)
